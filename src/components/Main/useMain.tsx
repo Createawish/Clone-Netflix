@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import axios from "axios";
 import {requests} from "../../Request";
 
-interface IMainProps {
+export interface IMainProps {
     adult:             boolean;
-    backdrop_path:     HTMLImageElement;
+    backdrop_path:     string;
     genre_ids:         number[];
     id:                number;
     original_language: string;
@@ -12,7 +12,7 @@ interface IMainProps {
     overview:          string;
     popularity:        number;
     poster_path:       string;
-    release_date:      Date;
+    release_date:      string;
     title:             string;
     video:             boolean;
     vote_average:      number;
