@@ -1,36 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import {requests} from '../../Request';
-import axios from "axios";
-import {IMAGE_URL} from "../../constans/contstans";
-
- interface MainProps {
-    adult:             boolean;
-    backdrop_path:     HTMLImageElement;
-    genre_ids:         number[];
-    id:                number;
-    original_language: string;
-    original_title:    string;
-    overview:          string;
-    popularity:        number;
-    poster_path:       string;
-    release_date:      Date;
-    title:             string;
-    video:             boolean;
-    vote_average:      number;
-    vote_count:        number;
-}
-
+import React from 'react';
+import {IMAGE_URL} from "../../constants/contstants";
+import {UseMain} from "./useMain"
 
 export const Main = (): JSX.Element => {
-    const [movies, setMovie] = useState<MainProps[]>([]);
-    const movie = movies[Math.floor(Math.random() * movies.length)];
+    const movie = UseMain()
 
-useEffect(()=>{
-    axios.get(requests.requestPopular).then((response) => {
-        setMovie(response.data.results)
-    })
-},[])
-    console.log("movies", movies)
     return (
         <div className='w-full h-[550px] text-white'>
             <div className='w-full h-full'>
