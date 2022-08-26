@@ -2,10 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {requests} from '../../Request';
 import axios from "axios";
 
-//  interface MainProps {
-//     results: any;
-// }
-
  interface MainProps {
     adult:             boolean;
     backdrop_path:     HTMLImageElement;
@@ -33,7 +29,7 @@ useEffect(()=>{
         setMovie(response.data.results)
     })
 },[])
-    console.log(movies)
+    console.log("movies", movies)
     return (
         <div className='w-full h-[550px] text-white'>
             <div className='w-full h-full'>

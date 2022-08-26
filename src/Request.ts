@@ -1,10 +1,7 @@
-
-
 export  const requests = {
-
-    requestPopular: 'https://api.themoviedb.org/3/movie/popular?api_key=ee40652082b8535f94b9d6172c31368b&language=en-US&page=1',
-    requestTopRated:'https://api.themoviedb.org/3/movie/top_rated?api_key=ee40652082b8535f94b9d6172c31368b&language=en-US&page=1',
-    requestTrending:'https://api.themoviedb.org/3/trending/all/day?api_key=ee40652082b8535f94b9d6172c31368b',
-    requestHorror:'https://api.themoviedb.org/3/search/movie?api_key=ee40652082b8535f94b9d6172c31368b&language=en-US&query=horror&page=1&include_adult=false',
-    requestUpcoming:'https://api.themoviedb.org/3/movie/upcoming?api_key=ee40652082b8535f94b9d6172c31368b&language=en-US&page=1'
+    requestPopular: `${process.env.REACT_APP_BASE_URL}/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`,
+    requestTopRated:`${process.env.REACT_APP_BASE_URL}/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`,
+    requestTrending:`${process.env.REACT_APP_BASE_URL}/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}`,
+    requestHorror:`${process.env.REACT_APP_BASE_URL}/search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=horror&page=1&include_adult=false`,
+    requestUpcoming:`${process.env.REACT_APP_BASE_URL}/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`
   }
