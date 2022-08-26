@@ -1,27 +1,18 @@
-import React, {useEffect, useState} from 'react';
-import axios from "axios";
-
-import {IMainProps} from "../Main/useMain";
+import React from 'react';
+import {UseRow} from "./useRow";
 import {IMAGE_SCROLL_URL} from "../../constants/contstants";
 
-interface RowProps {
+interface IRowProps {
     title:string,
-    fetchURL:any
-
+    fetchURL:string
 }
 
-export const Row = ({title,fetchURL}:RowProps):JSX.Element => {
-    const [movies, setMovie] = useState<IMainProps[]>([]);
-
-    useEffect(() => {
-        axios.get(fetchURL).then((response) =>{
-            setMovie(response.data.results)
-        })
-    },[fetchURL])
+export const Row = ({title,fetchURL}:IRowProps):JSX.Element => {
+    const movies = UseRow(fetchURL)
 
     return (
         <>
-<h2 className='text-white font-bold md:text-xl p-4'>{title}</h2>
+        <h2 className='text-white font-bold md:text-xl p-4'>{title}</h2>
             <div className='relative  flex items-center'>
                 <div id={'slider'}>
                     {movies.map((item, id) =>(
