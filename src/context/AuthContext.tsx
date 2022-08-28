@@ -1,6 +1,8 @@
 import React, {createContext, useState, useEffect, useContext, ReactNode} from 'react';
-import {auth} from '../firebase';
+import {auth,db} from '../firebase';
 import {createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,onAuthStateChanged} from 'firebase/auth'
+import {setDoc,doc} from 'firebase/firestore';
+
 
 export interface AuthContextProviderProps {
     signup?:(email:string,password:string) => Promise<any>,
@@ -15,8 +17,11 @@ type TAuthContextProvider = {
 export const AuthContextProvider = ({children}: TAuthContextProvider) => {
   const [user,setUser] = useState<any>(null)
 
-    const signup = (email:string, password:string): Promise<any> => {
-        return createUserWithEmailAndPassword(auth,email,password)
+    const signup = (email:string, password:string):any => {
+         createUserWithEmailAndPassword(auth,email,password)
+        setDoc(doc(db,'users', email), {
+            savedShow: []
+        })
         }
     const logout = (): Promise<void> => {
         return signOut(auth)
