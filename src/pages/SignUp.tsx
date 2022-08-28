@@ -1,16 +1,16 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
-import {AuthContextProviderProps, UserAuth} from "../context/AuthContext";
+import {UserAuth} from "../context/AuthContext";
 
 export const SignUp = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const {user,signUp} = UserAuth()
+    const {user, signup} = UserAuth()
 
-    const handleSubmit = async (e:any) => {
+    const handleSubmit = async (e:React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
         try{
-           await signUp(email,password)
+           await signup(email,password)
         } catch (error) {
             console.log(error)
         }
@@ -26,9 +26,9 @@ export const SignUp = () => {
                     <div className='max-w-[320px] mx-auto py-16'>
                         <h1 className='text-3xl font-bold'>Sign Up</h1>
                         <form className='w-full flex flex-col py-4'>
-                            <input className='p-3 my-2 bg-gray-700 rounded' type='email' placeholder='Email' autoComplete='email'/>
-                            <input className='p-3 my-2 bg-gray-700 rounded' type='password' placeholder='Password' autoComplete='curret-password'/>
-                            <button className='bg-red-600 py-3 my-6 rounded font-bold'>Sign Up</button>
+                            <input className='p-3 my-2 bg-gray-700 rounded' value={email} onChange={(e)=>setEmail(e.target.value)} type='email' placeholder='Email' autoComplete='email'/>
+                            <input className='p-3 my-2 bg-gray-700 rounded' value={password} onChange={(e)=>setPassword(e.target.value)} type='password' placeholder='Password' autoComplete='curret-password'/>
+                            <button className='bg-red-600 py-3 my-6 rounded font-bold' onClick={handleSubmit}>Sign Up</button>
                             <div className='flex justify-between items-center text-sm text-gray-600'>
                                 <p><input className='mr-2' type='checkbox'/>Remember me</p>
                                 <p>Need Help?</p>

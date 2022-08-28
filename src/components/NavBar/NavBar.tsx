@@ -1,7 +1,6 @@
 import React from 'react';
 import {NavBarProps} from "./NavBarProps";
-import {Link, Route, Routes} from "react-router-dom";
-import {Home} from "../../pages/Home";
+import {Link} from "react-router-dom";
 
 export const NavBar = ({text}:NavBarProps):JSX.Element => {
     return (
@@ -11,10 +10,10 @@ export const NavBar = ({text}:NavBarProps):JSX.Element => {
             </Link>
             <div>
                 <Link to='/login'>
-                <button className=' text-white pr-4'>Sing In</button>
+                <button className=' text-white pr-4'>Sign In</button>
                </Link>
                 <Link to='/signup'>
-                <button className='bg-red-600 px-6 py-2 rounded cursor-pointer text-white'>Sing Up</button>
+                <button className='bg-red-600 px-6 py-2 rounded cursor-pointer text-white'>Sign Up</button>
                 </Link>
             </div>
         </div>

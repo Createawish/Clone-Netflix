@@ -1,33 +1,27 @@
-import React, {createContext, useState, useEffect, useContext, ReactNode, FC} from 'react';
+import React, {createContext, useState, useEffect, useContext, ReactNode} from 'react';
 import {auth} from '../firebase';
 import {createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,onAuthStateChanged} from 'firebase/auth'
 
-
 export interface AuthContextProviderProps {
-    children?: ReactNode,
-    signUp?:(email:string,password:string) => void,
-    logIn?: (email:string,password:string) => void,
-    logOut?: () => void,
+    signup?:(email:string,password:string) => Promise<any>,
+    login?: (email:string,password:string) => Promise<any>,
+    logout?: () => Promise<void>,
     user?:any
 }
-interface UserProps extends AuthContextProviderProps{
-  user?:any
+type TAuthContextProvider = {
+    children: ReactNode
 }
+ const AuthContext =createContext<any>(null)
+export const AuthContextProvider = ({children}: TAuthContextProvider) => {
+  const [user,setUser] = useState<any>(null)
 
-
-
-
- const AuthContext =createContext<AuthContextProviderProps|null>(null)
-export const AuthContextProvider = ({children}:AuthContextProviderProps) :JSX.Element=> {
-  const [user,setUser] = useState<any>({})
-
-    const signUp = (email:string, password:string) => {
+    const signup = (email:string, password:string): Promise<any> => {
         return createUserWithEmailAndPassword(auth,email,password)
         }
-    const logOut = () => {
+    const logout = (): Promise<void> => {
         return signOut(auth)
         }
-        const logIn = (email:string,password:string) => {
+        const login = (email:string,password:string): Promise<any> => {
             return signInWithEmailAndPassword(auth,email,password)
         }
     useEffect(() => {
@@ -39,7 +33,7 @@ export const AuthContextProvider = ({children}:AuthContextProviderProps) :JSX.El
 
 
     return(
-    <AuthContext.Provider value={{signUp,logIn, logOut, user}}>
+    <AuthContext.Provider value={{login, logout, signup, user}}>
         {children}
     </AuthContext.Provider>
 );
