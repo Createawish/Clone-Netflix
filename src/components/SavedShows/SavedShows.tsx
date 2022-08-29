@@ -1,18 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import {MdChevronLeft, MdChevronRight} from "react-icons/md";
-import {Movie} from "../Movie/Movie";
 import {IMAGE_SCROLL_URL} from "../../constants/contstants";
-import {FaHeart, FaRegHeart} from "react-icons/fa";
 import {UserAuth} from "../../context/AuthContext";
 import {db} from '../../firebase';
 import {updateDoc, doc, onSnapshot} from 'firebase/firestore';
-import {IMainProps} from "../Main/useMain";
-
 import {AiOutlineClose} from 'react-icons/ai';
 
 
-interface ShowProps{
-    item:IMainProps
+interface MovieItem{
+    id: number
+    img: string
+    title: string
 }
 
 
@@ -30,18 +28,16 @@ export const SavedShows = (): JSX.Element => {
         slider.scrollLeft = slider.scrollLeft + 500;
     }
 
-useEffect(() =>{
-
-    // @ts-ignore
-    onSnapshot(doc(db, 'users', `${user?.email}`, (doc) => {
-        setMovie(doc.data()?.savedShows)
-    }))
-},[user?.email])
+    useEffect(()=> {
+         onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
+            setMovie(doc.data()?.savedShows)
+        });
+    }, [user?.email])
 
     const movieRef = doc(db, 'users' ,`${user?.email}`)
     const deleteShow = async (passedId:number) => {
         try{
-            const result = movies.filter((item:ShowProps) => item.item.id !== passedId)
+            const result = movies.filter((item:MovieItem) => item.id !== passedId)
             await updateDoc(movieRef, {
                 savedShows: result,
             });
@@ -49,7 +45,6 @@ useEffect(() =>{
            console.log(error)
         }
     }
-
     return (
         <>
         <h2 className='text-white font-bold md:text-xl p-4'>My Shows</h2>
@@ -58,14 +53,14 @@ useEffect(() =>{
             onClick={sliderLeft}
             className='bg-white left-0 rounded-full absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block' size={40}/>
         <div id='slider' className='w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative'>
-            {movies.map((item:ShowProps, id) =>(
+            {movies.map((item:MovieItem, id) =>(
                 <div key={id} className='w-[160px] sm:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2' >
                     <img className='w-full h-auto block'
-                         src={`${IMAGE_SCROLL_URL}${item?.item.backdrop_path}`}
-                         alt={item?.item.title}/>
+                         src={`${IMAGE_SCROLL_URL}${item?.img}`}
+                         alt={item?.title}/>
                     <div className='absolute top-0 left-0 w-full h-full hover:bg-black/80 opacity-0 hover:opacity-100 text-white'>
-                        <p className='white-space-normal text-xs md:text-sm font-bold flex justify-crenteritems-center h-full text-center'>{item?.item.title}</p>
-                        <p onClick={() => deleteShow(item.item.id)} className='absolute text-gray-300 top-4 right-4'><AiOutlineClose/></p>
+                        <p className='white-space-normal text-xs md:text-sm font-bold flex justify-crenteritems-center h-full text-center'>{item?.title}</p>
+                        <p onClick={() => deleteShow(item.id)} className='absolute text-gray-300 top-4 right-4'><AiOutlineClose/></p>
                     </div>
                 </div>
             ) )}

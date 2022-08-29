@@ -6,7 +6,7 @@ export const LogIn = () => {
     const [email, setEmail] = useState<string>('');
     const [error,setError] = useState<string>('')
     const [password, setPassword] = useState<string>('');
-    const {user, login} = UserAuth();
+    const {login} = UserAuth();
     const navigate = useNavigate()
 
     const handleSubmit = async (e:any) => {

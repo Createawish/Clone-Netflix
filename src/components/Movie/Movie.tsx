@@ -18,7 +18,7 @@ export const Movie = ({item}:MovieProps):JSX.Element => {
 
     const movieId = doc(db, 'users', `${user?.email}`)
     const saveShow = async () => {
-        if(user?. email){
+        if(user?.email){
             setLike(!like)
             setSaved(true)
             await  updateDoc(movieId,{
