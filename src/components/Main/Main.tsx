@@ -2,20 +2,8 @@ import React from 'react';
 import {IMAGE_URL} from "../../constants/contstants";
 import {UseMain} from "./useMain"
 
-
-
-
-
 export const Main = ():JSX.Element => {
-    const movie = UseMain()
-
-const truncateString = (str:string, num:number) => {
-        if(str?.length > num) {
-            return str.slice(0, num) + '...';
-        } else {
-            return str;
-        }
-}
+    const {movie, truncateString} = UseMain()
 
     return (
         <div className='w-full h-[550px] text-white'>

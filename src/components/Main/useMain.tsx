@@ -23,11 +23,18 @@ export const UseMain = () => {
     const [movies, setMovie] = useState<IMainProps[]>([]);
     const movie = movies[Math.floor(Math.random() * movies.length)];
 
+    const truncateString = (str:string, num:number) => {
+        if(str?.length > num) {
+            return str.slice(0, num) + '...';
+        } else {
+            return str;
+        }
+    }
     useEffect(()=>{
         axios.get(requests.requestPopular).then((response) => {
             setMovie(response.data.results)
         })
     },[])
 
-    return movie
+    return {movie, truncateString}
 }

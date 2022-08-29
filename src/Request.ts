@@ -1,6 +1,6 @@
 import {LANGUAGE} from "./constants/contstants";
 
-export  const requests = {
+export const requests = {
     requestPopular: `${process.env.REACT_APP_BASE_URL}/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=${LANGUAGE}&page=1`,
     requestTopRated:`${process.env.REACT_APP_BASE_URL}/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=${LANGUAGE}&page=1`,
     requestTrending:`${process.env.REACT_APP_BASE_URL}/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}`,

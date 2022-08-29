@@ -14,13 +14,11 @@ export const Row = ({title,fetchURL,rowId}:IRowProps):JSX.Element => {
 
     const sliderLeft = () => {
         let slider = document.getElementById('slider' + rowId);
-        // @ts-ignore
-        slider.scrollLeft = slider.scrollLeft - 500;
+        slider!.scrollLeft = slider!.scrollLeft - 500;
     }
     const sliderRight = () => {
         let slider = document.getElementById('slider' + rowId);
-        // @ts-ignore
-        slider.scrollLeft = slider.scrollLeft + 500;
+        slider!.scrollLeft = slider!.scrollLeft + 500;
     }
 
     return (
