@@ -1,26 +1,9 @@
-import React, {useState} from 'react';
-import {Link, useNavigate} from "react-router-dom";
-import {UserAuth} from "../context/AuthContext";
+import React from 'react';
+import {Link} from "react-router-dom";
+import {UseLogin} from "../hooks/useLogin";
 
 export const LogIn = () => {
-    const [email, setEmail] = useState<string>('');
-    const [error,setError] = useState<string>('')
-    const [password, setPassword] = useState<string>('');
-    const {login} = UserAuth();
-    const navigate = useNavigate()
-
-    const handleSubmit = async (e:any) => {
-        e.preventDefault();
-        setError('')
-        try{
-            await login (email,password);
-            navigate('/')
-
-        } catch (error:any) {
-            console.log(error);
-          setError(error.message )
-        }
-    }
+    const {setEmail,error,setPassword,handleSubmit} = UseLogin()
 
     return (
         <>

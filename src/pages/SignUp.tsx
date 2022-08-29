@@ -1,22 +1,9 @@
-import React, {useState} from 'react';
-import {Link, useNavigate} from "react-router-dom";
-import {UserAuth} from "../context/AuthContext";
+import React from 'react';
+import {Link} from "react-router-dom";
+import {UseSign} from "../hooks/useSign";
 
 export const SignUp = () => {
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-    const {signup} = UserAuth();
-    const navigate = useNavigate()
-
-    const handleSubmit = async (e:any) => {
-        e.preventDefault()
-        try{
-           await signup(email,password);
-           navigate('/')
-        } catch (error) {
-            console.log(error)
-        }
-    }
+   const {handleSubmit,email,setEmail,password,setPassword} = UseSign();
 
     return (
         <>

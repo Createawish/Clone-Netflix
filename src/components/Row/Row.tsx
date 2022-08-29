@@ -1,5 +1,5 @@
 import React from 'react';
-import {UseRow} from "./useRow";
+import {UseRow} from "../../hooks/useRow";
 import {Movie} from "../Movie/Movie";
 import {MdChevronLeft,MdChevronRight} from 'react-icons/md';
 

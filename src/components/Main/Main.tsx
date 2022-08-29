@@ -1,6 +1,6 @@
 import React from 'react';
 import {IMAGE_URL} from "../../constants/contstants";
-import {UseMain} from "./useMain"
+import {UseMain} from "../../hooks/useMain"
 
 export const Main = ():JSX.Element => {
     const {movie, truncateString} = UseMain()

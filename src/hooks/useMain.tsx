@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from "axios";
-import {requests} from "../../Request";
+import {requests} from "../Request";
 
 export interface IMainProps {
     adult:             boolean;

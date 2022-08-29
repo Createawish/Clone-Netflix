@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {IMainProps} from "../Main/useMain";
+import {IMainProps} from "./useMain";
 import axios from "axios";
 
 export const UseRow = (url: string) => {

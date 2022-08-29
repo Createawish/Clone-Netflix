@@ -1,21 +1,10 @@
 import React from 'react';
 import {NavBarProps} from "./NavBarProps";
-import {Link, useNavigate} from "react-router-dom";
-import {UserAuth} from "../../context/AuthContext";
+import {Link} from "react-router-dom";
+import {UseNavBar} from "../../hooks/useNavBar";
 
 export const NavBar = ({text}:NavBarProps):JSX.Element => {
-    const {user, logout} = UserAuth();
-    const navigate = useNavigate();
-
-    console.log(user, 'user')
-    const handleLogout = async () =>{
-        try{
-            await logout()
-            navigate('/')
-        }     catch (error) {
-            console.log(error)
-        }
-    };
+   const {user, handleLogout} = UseNavBar()
 
     return (
         <div className='flex items-center justify-between p-4 z-[100] w-full absolute '>
